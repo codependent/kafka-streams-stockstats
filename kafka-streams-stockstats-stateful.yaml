@@ -26,19 +26,19 @@ spec:
         app: streams-stock-stats
     spec:
       containers:
-      - name: kafka-streams-stockstat
-        image: gcr.io/gwen-test-202722/kafka-streams-stockstat:latest
-        env:
-        - name: JAVA_TOOL_OPTIONS
-          value: -DLOGLEVEL=INFO
-        volumeMounts:
-        - name: rocksdb
-          mountPath: /var/lib/kafka-streams
+        - name: kafka-streams-stockstat
+          image: gcr.io/cloud-private-dev/gamussa/kafka-streams-stockstat:latest
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: -DLOGLEVEL=INFO
+          volumeMounts:
+            - name: rocksdb
+              mountPath: /var/lib/kafka-streams
   volumeClaimTemplates:
-  - metadata:
-      name: rocksdb
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+    - metadata:
+        name: rocksdb
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
